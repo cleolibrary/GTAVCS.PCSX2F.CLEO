@@ -8,13 +8,14 @@ function writemakefile_ps2(prj_name, scripts_addr, base, ...)
    file = io.open("source/" .. prj_name .. "/makefile", "w")
    if (file) then
 str = [[
-EE_BIN = ../../data/%s/%s.elf
+EE_BIN = ../../data/%s.elf
 EE_OBJS = %s 
 
 BASE_ADDRESS = %s
 EE_LINKFILE = linkfile
 EE_LIBS += -l:libc.a -l:libm.a -l:libgcc.a
-EE_LDFLAGS = -Wl,--entry=init -Wl,-Map,../../data/%s/%s.map -nostdlib -nodefaultlibs -Wl,'--defsym=BASE_ADDRESS=$(BASE_ADDRESS)'
+EE_LDFLAGS = -Wl,--entry=init -Wl,-Map,../../data/%s.map -nostdlib -nodefaultlibs -Wl,'--defsym=BASE_ADDRESS=$(BASE_ADDRESS)'
+EE_CXXFLAGS += -fpermissive
 
 all: clean main-build
 
@@ -27,7 +28,7 @@ PS2SDK = ../../external/ps2sdk/ps2sdk
 include $(PS2SDK)/samples/Makefile.pref
 include $(PS2SDK)/samples/Makefile.eeglobal
 ]]
-      file:write(string.format(str, prj_name, scripts_addr .. prj_name, files, base, prj_name, scripts_addr .. prj_name))
+      file:write(string.format(str, scripts_addr .. prj_name, files, base, scripts_addr .. prj_name))
       file:close()
    end
 end

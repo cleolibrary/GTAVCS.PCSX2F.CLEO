@@ -69,7 +69,7 @@ workspace "GTAVCS.PCSX2F.CLEO"
       end
       if (gamepath) then
          cmdcopy = { "set \"path=" .. gamepath .. scriptspath .. "\"" }
-         pbcmd[2] = "set \"file=../data/" .. prj_name .. "/" .. scriptspath .. prj_name ..".elf\""
+         pbcmd[2] = "set \"file=../data/" .. scriptspath .. prj_name ..".elf\""
          table.insert(cmdcopy, pbcmd)
          buildcommands   { "call " .. ps2sdkpath .. " -C " .. sourcepath, cmdcopy }
          rebuildcommands { "call " .. ps2sdkpath .. " -C " .. sourcepath .. " clean && " .. ps2sdkpath .. " -C " .. sourcepath, cmdcopy }
@@ -99,6 +99,7 @@ project "GTAVCS.PCSX2F.CLEO"
    includedirs { "external/ps2sdk/ps2sdk/ee" }
    files { "source/%{prj.name}/*.h" }
    files { "source/%{prj.name}/*.c" }
+   files { "source/%{prj.name}/*.cpp" }
    targetextension ".elf"
    setbuildpaths_ps2("Z:/GitHub/PCSX2-Fork-With-Plugins/bin/", "pcsx2x64.exe", "PLUGINS/", "%{wks.location}/../external/ps2sdk/ee/bin/vsmake", "%{wks.location}/../source/%{prj.name}/", "GTAVCS.PCSX2F.CLEO")
    writemakefile_ps2("GTAVCS.PCSX2F.CLEO", "PLUGINS/", "0x05000000", "../../includes/pcsx2/log.o",
