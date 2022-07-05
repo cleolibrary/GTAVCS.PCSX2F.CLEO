@@ -41,7 +41,7 @@ jobs:
       with:
         tag: latest
     - name: Upload Release
-      uses: ncipollo/release-action@v1
+      uses: ncipollo/release-action@v1.10.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         allowUpdates: true
